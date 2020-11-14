@@ -38,6 +38,7 @@ class AzureServiceBusClient:
                 time.sleep(0.1)
 
     def send_message(self, msg):
+
         with self.client.get_queue_sender(queue_name) as sender:
             sender.send_messages(ServiceBusMessage(f"{msg} send on {datetime.now()}"))
             print("Send message is done.")
@@ -64,4 +65,4 @@ if __name__ == "__main__":
     print(threading.active_count())  # two threads are running
     print(threading.current_thread())  # see current main thread flask server
 
-    app.run()
+    app.run(port=5001)
